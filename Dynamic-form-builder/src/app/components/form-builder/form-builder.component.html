@@ -1,0 +1,105 @@
+<div class="form-builder">
+  <h2>Form Builder</h2>
+
+  <div class="form-builder-content">
+    <!-- Available Fields -->
+    <div class="field-list">
+      <h3>Available Fields</h3>
+      <div
+        cdkDrag
+        *ngFor="let field of availableFields"
+        (cdkDragReleased)="onFieldDrop(field)"
+        class="draggable-field"
+      >
+        {{ field.label }}
+      </div>
+    </div>
+
+    <!-- Form Preview -->
+    <div class="form-preview">
+      <h3>Form Preview</h3>
+      <form [formGroup]="formGroup">
+        <div
+          cdkDropList
+          [cdkDropListData]="formFields"
+          class="dropzone"
+          (cdkDropListDropped)="onDrop($event)"
+        >
+          <div
+            *ngFor="let field of formFields; let i = index"
+            cdkDrag
+            class="form-field"
+          >
+            <label>{{ field.label }}</label>
+            <input
+              *ngIf="field.type === 'text'"
+              [formControlName]="field.name"
+              [placeholder]="field.helpText"
+            />
+            <textarea
+              *ngIf="field.type === 'textarea'"
+              [formControlName]="field.name"
+              [placeholder]="field.helpText"
+            ></textarea>
+            <select
+              *ngIf="field.type === 'dropdown'"
+              [formControlName]="field.name"
+            >
+              <option *ngFor="let option of field.options" [value]="option">
+                {{ option }}
+              </option>
+            </select>
+            <mat-checkbox
+              *ngIf="field.type === 'checkbox'"
+              [formControlName]="field.name"
+            >
+              {{ field.label }}
+            </mat-checkbox>
+            <mat-radio-group
+              *ngIf="field.type === 'radio'"
+              [formControlName]="field.name"
+            >
+              <mat-radio-button
+                *ngFor="let option of field.options"
+                [value]="option"
+              >
+                {{ option }}
+              </mat-radio-button>
+            </mat-radio-group>
+            <input
+              *ngIf="field.type === 'date'"
+              type="date"
+              [formControlName]="field.name"
+            />
+            <div class="field-actions">
+              <button type="button" (click)="removeField(i)">Delete</button>
+            </div>
+          </div>
+        </div>
+      </form>
+      <button type="button" (click)="createTemplate()">Create Template</button>
+    </div>
+  </div>
+
+  <!-- Display Generated Templates -->
+  <div class="template-container">
+    <h3>Generated Templates</h3>
+    <div
+      *ngFor="let template of templates; let i = index"
+      class="template-card"
+    >
+      <h3>Template {{ i + 1 }}</h3>
+      <div [innerHTML]="template.preview"></div>
+      <div class="template-actions">
+        <button type="button" (click)="deleteTemplate(i)">Delete</button>
+        <button
+          type="button"
+          (click)="saveTemplate(i)"
+          [disabled]="template.saved"
+        >
+          {{ template.saved ? "Saved" : "Save" }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,48 @@
+{
+  "forms": [
+    {
+      "id": "eb2e",
+      "textInput_0": "Sumanth",
+      "textArea_1": "Hi How are you ",
+      "checkbox_2": true,
+      "radio_3": "Option A",
+      "datePicker_4": "2025-03-18"
+    },
+    {
+      "id": "9f02",
+      "textInput_0": "Hello",
+      "textArea_1": "Hi Sumanth how are you",
+      "dropdown_2": "Option 1",
+      "checkbox_3": true,
+      "datePicker_4": "2025-03-17"
+    },
+    {
+      "id": "b455",
+      "textInput_0": "Hello",
+      "textArea_1": "Hi Sumanth how are you",
+      "dropdown_2": "Option 1",
+      "checkbox_3": true,
+      "datePicker_4": "2025-03-17"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "Sumanth",
+      "password": "Sumanth@9",
+      "role": "admin"
+    },
+    {
+      "id": 2,
+      "username": "user",
+      "password": "user123",
+      "role": "user"
+    },
+    {
+      "id": "a9df",
+      "username": "user",
+      "password": "user@123",
+      "role": "user"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+<h1><strong>Form</strong></h1>
+
+
+<div *ngIf="savedForm">
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+      <div *ngFor="let field of savedForm.formFields">
+        <label>{{ field.label }}</label>
+        <ng-container [ngSwitch]="field.type">
+          <input *ngSwitchCase="'text'" [formControlName]="field.name" type="text" />
+          <textarea *ngSwitchCase="'textarea'" [formControlName]="field.name"></textarea>
+          <select *ngSwitchCase="'dropdown'" [formControlName]="field.name">
+            <option *ngFor="let option of field.options" [value]="option">{{ option }}</option>
+          </select>
+          <input *ngSwitchCase="'checkbox'" [formControlName]="field.name" type="checkbox" />
+          <div *ngSwitchCase="'radio'">
+            <label *ngFor="let option of field.options">
+              <input type="radio" [formControlName]="field.name" [value]="option" /> {{ option }}
+            </label>
+          </div>
+          <input *ngSwitchCase="'date'" [formControlName]="field.name" type="date" />
+        </ng-container>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
