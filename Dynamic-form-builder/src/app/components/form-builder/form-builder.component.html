@@ -82,23 +82,25 @@
   </div>
 
   <!-- Display Generated Templates -->
-  <div class="template-container">
-    <h3>Generated Templates</h3>
-    <div
-      *ngFor="let template of templates; let i = index"
-      class="template-card"
-    >
-      <h3>Template {{ i + 1 }}</h3>
-      <div [innerHTML]="template.preview"></div>
-      <div class="template-actions">
-        <button type="button" (click)="deleteTemplate(i)">Delete</button>
-        <button
-          type="button"
-          (click)="saveTemplate(i)"
-          [disabled]="template.saved"
-        >
-          {{ template.saved ? "Saved" : "Save" }}
-        </button>
+ <div class="template-container-wrapper">
+    <div class="template-container">
+      <h3>Generated Templates</h3>
+      <div
+        *ngFor="let template of templates; let i = index"
+        class="template-card"
+      >
+        <h3>Template {{ i + 1 }}</h3>
+        <div [innerHTML]="template.preview"></div>
+        <div class="template-actions">
+          <button type="button" (click)="deleteTemplate(i)">Delete</button>
+          <button
+            type="button"
+            (click)="saveTemplate(i)"
+            [disabled]="template.saved"
+          >
+            {{ template.saved ? "Saved" : "Save" }}
+          </button>
+        </div>
       </div>
     </div>
   </div>
